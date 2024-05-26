@@ -11,7 +11,7 @@ struct Card{
 struct Hand{
     std::vector<Card> handCards;
     size_t totalValue;
-    bool containsAce;
+    bool aceWeighted;
 };
 
 class Game{
@@ -40,7 +40,7 @@ class Game{
 
         Card drawRandomCard();
 
-        std::string handToString(bool isPlayer);
+        std::string handToString();
 
         //hit
 

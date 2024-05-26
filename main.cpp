@@ -1,13 +1,11 @@
 #include <iostream>
-#include <fstream>
-#include <vector>
-#include <sstream>
 #include <assert.h>
-#include <algorithm>
+#include <time.h>
 
 #include "game.h"
 
 int main(int argc, char* argv[]){ //6 to 8 decks is standard for blackjack
+    srand(time(0));
 
     std::cout << "Welcome to Blackjack!\n";
     std::cout << "Press ENTER to begin playing.\n";
