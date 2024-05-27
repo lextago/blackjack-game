@@ -40,7 +40,9 @@ class Game{
 
         Card drawRandomCard();
 
-        std::string handToString();
+        std::string handToString(bool isPlayer);
+
+        std::string totalToString(bool isPlayer);
 
         //hit
 

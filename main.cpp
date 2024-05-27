@@ -23,5 +23,11 @@ int main(int argc, char* argv[]){ //6 to 8 decks is standard for blackjack
 
     myGame.dealCards();
 
+	std::cout << "The dealer's first card is: \n" << myGame.handToString(false) << "The second card is face down.\n";
+	std::cout << myGame.totalToString(false) << "\n";
+
+	std::cout << "Your cards: \n" << myGame.handToString(true);
+	std::cout << myGame.totalToString(true) << "\n";
+
     return 0;
 }

@@ -71,19 +71,6 @@ void Game::dealCards(){
 		}
 	}
 
-	std::cout << "The dealer's first card is: \n" << dealerHand.handCards.at(0).name << "\nThe second card is face down.\n";
-	if(dealerHand.handCards.at(0).name.find("Ace") != std::string::npos){
-		std::cout << "Dealer's total: 1/11\n\n";
-	}else{
-		std::cout << "Dealer's total: " << dealerHand.handCards.at(0).value << "\n\n";
-	}
-
-	std::cout << "Your cards: \n" << handToString();
-	if(playerHand.aceWeighted){
-		std::cout << "Your total: " << playerHand.totalValue - 10 << "/" << playerHand.totalValue << "\n";
-	}else{
-		std::cout << "Your total: " << playerHand.totalValue << "\n";
-	}
 }
 
 Card Game::drawRandomCard(){
@@ -94,12 +81,43 @@ Card Game::drawRandomCard(){
 	return randCard;
 }
 
-std::string Game::handToString(){
+std::string Game::handToString(bool isPlayer){
 	std::string output = "";
-	for(auto card : playerHand.handCards){
-		output += card.name + "\n";
+	if(isPlayer){
+		for(auto card : playerHand.handCards){
+			output += card.name + "\n";
+		}
+	}else{
+		if(dealerHand.handCards.size() > 2){
+			for(auto card : dealerHand.handCards){
+				output += card.name + "\n";
+			}
+		}else{
+			output += dealerHand.handCards.at(0).name + "\n";
+		}
 	}
 	return output;
+}
+
+std::string Game::totalToString(bool isPlayer){
+	std::string output;
+	if(isPlayer){
+		output = "Your total: " + std::to_string(playerHand.totalValue);
+		if(playerHand.aceWeighted){
+			output += "/" + std::to_string(playerHand.totalValue + 10);
+		}
+	}else{
+		if(dealerHand.handCards.size() == 2){
+			output = "Dealer's total: " + std::to_string(dealerHand.handCards.at(0).value);
+		}else{
+			output =  "Dealer's total: " + std::to_string(dealerHand.totalValue);
+		}
+
+		if(dealerHand.handCards.at(0).value == 1 || (dealerHand.handCards.size() > 2 && dealerHand.aceWeighted)){
+			output += "/" + std::to_string(dealerHand.totalValue + 10);
+		}
+	}
+	return output + "\n";
 }
 
 //hit

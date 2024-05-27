@@ -1,5 +1,4 @@
-build:
-	rm -f main.o
+build: main.cpp game.cpp
 	g++ -g main.cpp game.cpp -o main.o
 
 run:
@@ -7,3 +6,6 @@ run:
 
 valgrind:
 	valgrind ./main.o 6
+
+clean:
+	rm -f main.o
