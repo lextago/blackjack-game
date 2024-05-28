@@ -1,11 +1,32 @@
-build: main.cpp game.cpp
-	g++ -g main.cpp game.cpp -o main.o
+blackjack: main.o player.o dealer.o
+	g++ main.o player.o dealer.o -o blackjack
+
+tests: tests.o player.o dealer.o
+	g++ tests.o player.o dealer.o -o tests
+
+main.o: main.cpp
+	g++ -c -g main.cpp
+
+player.o: player.cpp player.h
+	g++ -c player.cpp
+
+dealer.o: dealer.cpp dealer.h
+	g++ -c dealer.cpp
+
+tests.o: tests.cpp
+	g++ -c -g tests.cpp
 
 run:
-	./main.o 6
+	./blackjack 6
+
+run_tests:
+	./tests 1
 
 valgrind:
-	valgrind ./main.o 6
+	valgrind ./blackjack 6
+
+valgrind_tests:
+	valgrind ./tests 1
 
 clean:
-	rm -f main.o
+	rm *.o blackjack tests

@@ -9,48 +9,9 @@ struct Card{
 };
 
 struct Hand{
-    std::vector<Card> handCards;
+    std::vector<Card> cards;
     size_t totalValue;
     bool aceWeighted;
-};
-
-class Game{
-    private:
-        size_t playerWallet;
-        size_t currBet;
-        size_t numDecks;
-
-        std::vector<Card> dealerDeck;
-
-        Hand playerHand;
-        Hand dealerHand;
-
-    public:
-        Game(size_t playerWallet, size_t numDecks);
-
-        bool walletEmpty();
-
-        //bet
-
-        void clearTable();
-
-        void playerBet();
-
-        void dealCards();
-
-        Card drawRandomCard();
-
-        std::string handToString(bool isPlayer);
-
-        std::string totalToString(bool isPlayer);
-
-        //hit
-
-        //stand
-
-        //double
-
-        //split
-
-        //surrender
+    bool isBust;
+    bool isBlackjack;
 };
